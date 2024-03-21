@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KSA Technologies</title>
+<style>
+  
+  *{
+    background-color: rgb(255, 250, 250);
+
+  }
+  .header{
+    width: 200px;
+    margin-left: 10px;
+    color: #333;
+    text-align: center;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin-left: 200px;
+    padding: 20px;
+  }
+
+
+
+  #searchInput{
+    width: 795px;
+    height: 30px;
+    border: 1px solid #242424;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .product {
+    border: 1px solid #242424;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .product img {
+    max-width: 80px;
+    max-height: 80px;
+    margin-right: 20px;
+  }
+
+
+  /*navbar*/
+
+  
+  .nav{
+    width: auto;
+    margin-top: 80px;
+    margin-left: 150px;
+  
+  }
+
+  ul {
+  list-style-type: none;
+  margin: 40px;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(255, 250, 250);;
+
+}
+
+li {
+  float: left;
+  
+}
+
+li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+
+li a:hover{
+  background-color: #5a5a5a;
+}
+
+
+</style>
+</head>
+<body>
+  <div class="header">
+    <h3>KSA Technologies</h3>
+  </div>
+  <div class="nav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a class="active" href="#login">Login</a></li>
+    </ul>
+  </div>
+  
+<div class="container">
+  <h2>Product Lists</h2>
+  <input type="text" id="searchInput" placeholder="Search products by name...">
+  <div id="productList">
+    <!-- Product listings will be inserted here -->
+  </div>
+</div>
+
+<script>
+ 
+ // Sample product data
+ const products = [
+    { name: "Techno ",   image: "https://via.placeholder.com/150", price: "10000 Tk" },
+    { name: "Vivo ",     image: "https://via.placeholder.com/150", price: "20000 Tk" },
+    { name: "Xiaomi ",   image: "https://via.placeholder.com/150", price: "30000 Tk" },
+    { name: "Samsung ",  image: "https://via.placeholder.com/150", price: "40000 Tk" },
+    { name: "Apple ",    image: "https://via.placeholder.com/150", price: "50000 Tk" }
+  ];
+  // Function to display products
+  function displayProducts(products) {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = ''; // Clear previous content
+
+    products.forEach(product => {
+      const productDiv = document.createElement('div');
+      productDiv.classList.add('product');
+
+      const image = document.createElement('img');
+      image.src = product.image;
+
+      const name = document.createElement('span');
+      name.textContent = product.name;
+
+      const price = document.createElement('span');
+      price.textContent = product.price;
+
+      productDiv.appendChild(image);
+      productDiv.appendChild(name);
+      productDiv.appendChild(price);
+
+      productList.appendChild(productDiv);
+    });
+  }
+
+  // Display all products initially
+  displayProducts(products);
+
+  // Function to handle search
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const searchTerm = this.value.trim().toLowerCase();
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+    displayProducts(filteredProducts);
+  });
+</script>
+
+</body>
+</html>
